@@ -1,3 +1,6 @@
+
+\c reviews;
+
 CREATE TABLE "restaurants" (
   "id" SERIAL PRIMARY KEY,
   "restaurant_name" varchar(60),
