@@ -1,39 +1,79 @@
-# Project Name
+# Review-Service
 
-> Project description
+# Server API
 
-## Related Projects
+ ## Get review info
+  - GET `/api/reviews/:id`
 
-  - https://github.com/Glitty/Calender-reservation
-  - https://github.com/Glitty/photo-gallery
-  - https://github.com/Gliity/people-also-viewed
-  - https://github.com/teamName/repo
+ ## Path Parameters:
+  - `id` review id
 
-## Table of Contents
+ Success Status Code: 200
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
+ Returns: JSON
 
-## Usage
+  `{
+    productId: Number,
+  userName: String,
+  userAvatar: String,
+  userLocation: String,
+  userFriends: Number,
+  userReviews: Number,
+  userPhotos: Number,
+  userEliteStatus: Boolean,
+  reviewRating: Number,
+  reviewBody: String,
+  reviewDate: Date,
+  reviewPhotos: Number,
+  atrCool: Number,
+  atrUseful: Number,
+  atrFunny: Number,
+  displayPhotos: [String]
+  }`
 
-> Some usage instructions
 
-## Requirements
+  ## Add Review
+    - POST `/api/reviews/`
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
+    success Status Code: 201
 
-- Node 6.13.0
-- etc
+    Request Body: Expects JSON with the following keys
 
-## Development
+    {
+     userName: String,
+     userReviews: Number,
+     reviewRating: Number,
+     reviewBody: String,
+     reviewDate: Date,
+    }
 
-### Installing Dependencies
 
-From within the root directory:
+  ## Update review info
+    - PATCH `/api/reviews/:id`
 
-```sh
-npm install -g webpack
-npm install
-```
+   ### Path Parameters:
+    - `id` review id
+   ### Success Status Code: 204
+
+   ### Request Body: Expects JSON with any of the following keys (include only keys to be updated)
+
+     `  {
+     userName: String,
+     userReviews: Number,
+     reviewRating: Number,
+     reviewBody: String,
+     reviewDate: Date,
+    }`
+
+
+
+  ## Delete review
+    - DELETE `/api/review/:id`
+
+
+  ### Path Parameters:
+    - `id` review id
+
+  ### Success Status Code: 204
+
 
