@@ -1,31 +1,34 @@
+DROP DATABASE  IF EXISTS reviews_database;
+CREATE DATABASE reviews_databae;
 
-\c reviews;
-
-CREATE TABLE "restaurants" (
-  "id" SERIAL PRIMARY KEY,
-  "restaurant_name" varchar(60),
-  "first_name" varchar(60) NOT NULL,
-  "last_name" varchar(60) NOT NULL,
-  "number_of_reviews" int,
-  "overall_rating" int
+\c reviews_database
+CREATE TABLE IF NOT EXISTS "restaurants" (
+  "restaurant_id" SERIAL PRIMARY KEY,
+  "restaurant_name" VARCHAR(60) UNIQUE NOT NULL,
+  "number_of_reviews" INT,
+  "overall_rating" DECIMAL,
+  "one_star_rating" DECIMAL,
+  "two_star_rating" DECIMAL,
+  "three_star_rating" DECIMAL,
+  "four_star_rating" DECIMAL,
+  "five_star_rating" DECIMAL
 );
 
-CREATE TABLE "reviews" (
-  "id" SERIAL PRIMARY KEY,
-  "restaurant_id" int NOT NULL,
-  "user_id" int,
-  "description" varchar(500),
-  "rating" int
+
+CREATE TABLE IF NOT EXISTS  "users" (
+  "user_id" SERIAL PRIMARY KEY,
+  "first_name" VARCHAR(60) NOT NULL,
+  "last_name" VARCHAR(60) NOT NULL,
+  "avatar" INT,
+  "location" VARCHAR(200)
 );
 
-CREATE TABLE "users" (
-  "id" SERIAL PRIMARY KEY,
-  "first_name" varchar(60) NOT NULL,
-  "last_name" varchar(60) NOT NULL,
-  "avatar" int,
-  "location" varchar(200)
+
+CREATE TABLE IF NOT EXISTS "reviews" (
+  "restaurant_id" INT,
+  "user_id" INT REFERENCES reviews.users (user_id),
+  "description" VACHAR(500),
+  "rating" INT,
+  FOREIGN KEY (restaurant_id) REFERENCES restaurants (restaurant_id),
+  FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
-
-ALTER TABLE "reviews" ADD FOREIGN KEY ("restaurant_id") REFERENCES "restaurants" ("id");
-
-ALTER TABLE "users" ADD FOREIGN KEY ("id") REFERENCES "reviews" ("user_id");
