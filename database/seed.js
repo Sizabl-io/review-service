@@ -1,16 +1,21 @@
-// const db = require('./index.js');
-const mongoose = require('mongoose');
-const faker = require('faker');
-const model = require('./index.js');
-var AWS = require('aws-sdk');
-
-mongoose.connect('mongodb://localhost/reviews');
+const postgres = require('postgres')
 
 
 
 
-let Review = model.reviewModel;
 
+
+
+
+
+
+
+
+
+
+
+
+/*
 let seeder = (photos) => {
 
   for (let i = 1; i <= 100; i++) {
@@ -70,3 +75,5 @@ s3.listObjects(bucketParams, function (err, data) {
     seeder(data.Contents);
   }
 });
+
+*/
