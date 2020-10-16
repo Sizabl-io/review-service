@@ -11,11 +11,6 @@ CREATE TABLE IF NOT EXISTS "restaurants" (
   "restaurant_name" VARCHAR(60) UNIQUE NOT NULL,
   "number_of_reviews" INT,
   "overall_rating" DECIMAL,
-  "one_star_rating" DECIMAL,
-  "two_star_rating" DECIMAL,
-  "three_star_rating" DECIMAL,
-  "four_star_rating" DECIMAL,
-  "five_star_rating" DECIMAL
 );
 
 
@@ -30,11 +25,12 @@ CREATE TABLE IF NOT EXISTS  "users" (
 
 
 CREATE TABLE IF NOT EXISTS "reviews" (
-  "review_id" INT
+  "review_id" SERIAL PRIMARY KEY,
   "restaurant_id" INT,
   "user_id" INT,
   "description" VARCHAR(500),
   "rating" INT,
+
   FOREIGN KEY (restaurant_id) REFERENCES restaurants (restaurant_id),
   FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
