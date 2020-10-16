@@ -1,12 +1,27 @@
-// const db = require('./index.js');
-const mongoose = require('mongoose');
+const cassandra = require ('cassandra-driver');
+
+const client = new cassandra.Client({
+  contactPoint:[],
+  localDataCenter: '',
+  keyspace: 'reviewserver'
+});
+
+
+
+
+
+
+
+
+
+
+
+/*
 const faker = require('faker');
 const model = require('./index.js');
 var AWS = require('aws-sdk');
 
 mongoose.connect('mongodb://localhost/reviews');
-
-
 
 
 let Review = model.reviewModel;
@@ -70,3 +85,4 @@ s3.listObjects(bucketParams, function (err, data) {
     seeder(data.Contents);
   }
 });
+*/
