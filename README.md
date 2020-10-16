@@ -2,78 +2,138 @@
 
 # Server API
 
- ## Get review info
-  - GET `/api/reviews/:id`
+## Get all reviews of one restaurant
+  - GET `/api/restaurant/:{restaurant_id}/reviews`
+ ## Path Parameters:
+  - `restaurant_id` restaurant id
+  
+   Success Status Code: 200
+
+Req: JSON
+
+  `{
+     "restaurant_id": "integer",
+  "restaurant_name": "string",
+  "number_of_reviews": "integer",
+  "overall_rating": "integer",
+  "one_star_rating": "integer",
+  "two_star_rating": "integer",
+  "three_star_rating": "integer",
+  "four_star_rating": "integer",
+  "five_star_rating": "integer"
+  }`
+ ## Get one review info
+  - GET `/api/restaurant/:{restaurant_id}/reviews/:{review_id}`
 
  ## Path Parameters:
-  - `id` review id
+  - `restaurant_id` restaurant id
+  - `review_id` review id
 
  Success Status Code: 200
 
- Returns: JSON
+ Req: JSON
 
   `{
-    productId: Number,
-  userName: String,
-  userAvatar: String,
-  userLocation: String,
-  userFriends: Number,
-  userReviews: Number,
-  userPhotos: Number,
-  userEliteStatus: Boolean,
-  reviewRating: Number,
-  reviewBody: String,
-  reviewDate: Date,
-  reviewPhotos: Number,
-  atrCool: Number,
-  atrUseful: Number,
-  atrFunny: Number,
-  displayPhotos: [String]
+     "restaurant_id": "integer",
+  "restaurant_name": "string",
+  "user_id": "integer"
+  "review_id": "integer",
+  "rating": "integer",
+  "description": "string",
+  "one_star_rating": "integer",
+  "two_star_rating": "integer",
+  "three_star_rating": "integer",
+  "four_star_rating": "integer",
+  "five_star_rating": "integer"
   }`
 
 
   ## Add Review
-    - POST `/api/reviews/`
-
+    - POST `/api/restaurant/:{restaurant_id}/reviews`
+  ## Path Parameters:
+  - `restaurant_id` restaurant id
+  
     success Status Code: 201
 
     Request Body: Expects JSON with the following keys
 
-    {
-     userName: String,
-     userReviews: Number,
-     reviewRating: Number,
-     reviewBody: String,
-     reviewDate: Date,
-    }
+   ` {
+  "restaurant_id": "integer",
+  "restaurant_name": "string",
+  "user_id": "integer"
+  "review_id": "integer",
+  "rating": "integer",
+  "description": "string",
+    }`
 
-
-  ## Update review info
-    - PATCH `/api/reviews/:id`
+## Create a new user
+    - POST `/api/users`
 
    ### Path Parameters:
-    - `id` review id
+    N/A
+    
+    success Status Code: 201
+
+ Req: JSON
+       `{
+      "first_name" : "string",
+      "last_name" : "string",
+      "avatar" : "string",
+      "location" : "string",
+    }`
+ 
+ 
+  ## Update review info
+    - PATCH `api/restaurant/:{restaurant_id}/reviews/:{review_id}`
+
+   ### Path Parameters:
+    - `restaurant_id` restaurant id
+    - `review_id` review id
+  
    ### Success Status Code: 204
 
    ### Request Body: Expects JSON with any of the following keys (include only keys to be updated)
 
      `  {
-     userName: String,
-     userReviews: Number,
-     reviewRating: Number,
-     reviewBody: String,
-     reviewDate: Date,
+      "restaurant_id": "integer",
+      "restaurant_name": "string",
+      "user_id": "integer"
+      "review_id": "integer",
+      "rating": "integer",
+      "description": "string",
     }`
 
+  ## Update user info
+    - PATCH `api/users/: {user_id}
+   ### Path Parameters:
+   - `user_id`  user id
+   ### Success Status Code: 204
 
-
+   ### Request Body: Expects JSON with any of the following keys (include only keys to be updated)
+   
+    `{
+      "first_name" : "string",
+      "last_name" : "string",
+      "avatar" : "string",
+      "location" : "string",
+    }`
   ## Delete review
-    - DELETE `/api/review/:id`
+    - DELETE `/api/restaurant/:{restaurant_id}/reviews/:{review_id}`
 
 
   ### Path Parameters:
-    - `id` review id
+    - `restaurant_id` restaurant id
+    - `review_id` review id
 
   ### Success Status Code: 204
+  
+  ## Delete user
+     - DELETE `api/users/:{user_id}`
+     
+  ### Path Parameters:
+        `user_id` user id
+
+  ### Success Status Code: 204
+
 
 
