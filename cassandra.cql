@@ -7,20 +7,19 @@ CREATE KEYSPACE "reviewservice" WITH REPLICATION = {
 
   USE "reviewservice";
 
-
   CREATE TABLE "ratings_by_restaurant" (
     restaurant_id int,
     restaurant_name text,
     create_date date,
+    number_of_reviews int,
     overall_rating int,
     one_star_rating int,
     two_star_rating int,
     three_star_rating int,
     four_star_rating int,
     five_star_rating int,
-    PRIMARY KEY (restaurant_id, create_date)
+    PRIMARY KEY (restaurant_id, (overall_rating, number_of_reviews)
   )
-  WITH CLUSTERING ORDER BY (overall_rating, number_of_reviews)
 
   CREATE TABLE "reviews_by_restaurant" (
     restaurant_id int,
