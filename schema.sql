@@ -1,7 +1,11 @@
 DROP DATABASE  IF EXISTS reviews_database;
-CREATE DATABASE reviews_databae;
+CREATE DATABASE reviews_database;
 
-\c reviews_database
+DROP TABLE IF EXISTS reviews;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS restaurants;
+
+-- \c reviews_database
 CREATE TABLE IF NOT EXISTS "restaurants" (
   "restaurant_id" SERIAL PRIMARY KEY,
   "restaurant_name" VARCHAR(60) UNIQUE NOT NULL,
@@ -26,8 +30,8 @@ CREATE TABLE IF NOT EXISTS  "users" (
 
 CREATE TABLE IF NOT EXISTS "reviews" (
   "restaurant_id" INT,
-  "user_id" INT REFERENCES reviews.users (user_id),
-  "description" VACHAR(500),
+  "user_id" INT,
+  "description" VARCHAR(500),
   "rating" INT,
   FOREIGN KEY (restaurant_id) REFERENCES restaurants (restaurant_id),
   FOREIGN KEY (user_id) REFERENCES users (user_id)

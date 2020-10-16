@@ -1,13 +1,14 @@
 const {pool} = require('pg');
 
 const pool = new Pool ({
-  username: 'babyfox'
+  user: 'app_user'
   host: 'localhost',
-  user: 'root',
-  password: '0917',
+  password: 'app_password',
   port: 5432
-  database: 'reviews',
+  database: 'reviews_database',
 });
+
+
 
 module.exports = pool;
 
