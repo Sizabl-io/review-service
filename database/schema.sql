@@ -25,7 +25,6 @@ CREATE KEYSPACE "reviewservice" WITH REPLICATION = {
     three_star_rating int,
     four_star_rating int,
     five_star_rating int,
-    PRIMARY KEY ((restaurant_id, id), date, user_id)
   )
   WITH CLUSTERING ORDER BY (overall_rating, number_of_reviews)
 
@@ -35,5 +34,7 @@ CREATE KEYSPACE "reviewservice" WITH REPLICATION = {
     user_id int,
     create_date date,
     description text,
-    rating int
+    rating int,
+    PRIMARY KEY (restaurant_id, user_id, date)
+
   )
