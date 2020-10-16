@@ -136,4 +136,6 @@ Req: JSON
   ### Success Status Code: 204
 
 
+#### Postgress schema diagram https://app.diagrams.net/?src=about#G1lhFISIX8PbDvX_BNxNrNKF1vbN-fb3oP
 
+#### Cassandra schema diagram https://app.diagrams.net/?src=about#G1FFW8gfQobvYm7Fk8ztkYRI7PHCBdcNky
