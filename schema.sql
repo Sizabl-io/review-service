@@ -24,7 +24,8 @@ CREATE TABLE IF NOT EXISTS  "users" (
   "first_name" VARCHAR(60) NOT NULL,
   "last_name" VARCHAR(60) NOT NULL,
   "avatar" INT,
-  "location" VARCHAR(200)
+  "location" VARCHAR(200)，
+  "number_of_reviews" INT
 );
 
 
