@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS  "users" (
 
 
 CREATE TABLE IF NOT EXISTS "reviews" (
+  "review_id" INT
   "restaurant_id" INT,
   "user_id" INT,
   "description" VARCHAR(500),
