@@ -13,7 +13,6 @@ CREATE TABLE "restaurants" (
   "overall_rating" DECIMAL
 );
 
-
 CREATE TABLE "users" (
   "user_id" SERIAL PRIMARY KEY,
   "first_name" VARCHAR(60) NOT NULL,
@@ -23,14 +22,12 @@ CREATE TABLE "users" (
   "number_of_reviews" INT
 );
 
-
 CREATE TABLE "reviews" (
   "review_id" SERIAL PRIMARY KEY,
   "restaurant_id" INT,
   "user_id" INT,
   "description" VARCHAR(500),
   "rating" INT,
-
   FOREIGN KEY (restaurant_id) REFERENCES restaurants (restaurant_id),
   FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
