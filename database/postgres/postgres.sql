@@ -15,10 +15,9 @@ CREATE TABLE "restaurants" (
 
 CREATE TABLE "users" (
   "user_id" SERIAL PRIMARY KEY,
-  "first_name" VARCHAR(60) NOT NULL,
-  "last_name" VARCHAR(60) NOT NULL,
-  "avatar" INT,
-  "location" VARCHAR(200),
+  "user_name" VARCHAR(60) NOT NULL,
+  "avatar" VARCHAR,
+  "user_location" VARCHAR(200),
   "number_of_reviews" INT
 );
 

@@ -28,8 +28,7 @@ CREATE KEYSPACE "reviewservice" WITH REPLICATION = {
     create_date date,
     rating int,
     user_id int,
-    first_name text,
-    last_name text,
+    user_name text,
     avatar text,
     location text,
     PRIMARY KEY (restaurant_id, review_id)
