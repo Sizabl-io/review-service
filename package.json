@@ -10,9 +10,7 @@
   "scripts": {
     "react": "webpack -d --watch",
     "server": "nodemon server/index.js",
-    "start-sql": "pg_ctl -D /usr/local/var/postgres start",
-    "seed-postgres": "node --max-old-space-size=8192 database/postgres/pgRestaurants.js && node --max-old-space-size=8192 database/postgres/pgReviews.js && node --max-old-space-size=8192 database/postgres/pgUsers.js",
-    "seed-cassandra": "node --max-old-space-size=8192 database/cassandra/cRatings.js && node --max-old-space-size=8192 database/cassandra/cReviews.js",
+    "seed": "node ./database/seed.js",
     "test": "jest"
   },
   "dependencies": {
@@ -25,16 +23,10 @@
     "axios": "^0.20.0",
     "babel-loader": "^8.1.0",
     "body-parser": "^1.19.0",
-    "csv-write-stream": "^2.0.0",
-    "csv-writer": "^1.6.0",
     "express": "^4.17.1",
     "faker": "^5.1.0",
-    "fs": "0.0.1-security",
     "mongoose": "^5.10.6",
-    "newrelic": "^6.13.2",
     "nodemon": "^2.0.4",
-    "path": "^0.12.7",
-    "pg": "^8.4.1",
     "postgres": "^1.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
