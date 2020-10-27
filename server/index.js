@@ -1,34 +1,69 @@
-const express = require('express');
-const app = express();
-const port = 5555;
-const db = require('../database');
-const bodyParser = require('body-parser');
+require('newrelic');
+const express = require('express')
+const app = express()
+var bodyParser = require('body-parser')
+const port = 3002
+const pool = require('../database/postgres/index.js')
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
+// get all reviews of one restaurant
+app.get('/api/restaurants/:restaurantId/reviews', (req, res) => {
+  const {restaurantId} = req.params;
+  q = `SELECT * FROM reviews WHERE restaurant_id = ${restaurantId}`
+  pool.query(q, (err, results) => {
+    if(err) {
+      res.status(400).send();
+    } else {
+      res.status(200).send(results.rows[0])
+    }
+  })
+})
 
-app.use(express.static(__dirname + '/../client/dist'));
+// get one single review by review id
+app.get('/api/reviews/:reviewId', (req, res) => {
+  const {reviewId} = req.params;
+  q = `SELECT * FROM reviews WHERE review_id = ${reviewId}`
+  pool.query(q, (err, results) => {
+    if(err) {
+      res.status(400).send();
+    } else {
+      res.status(200).send(results.rows[0])
+    }
+  })
+})
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+// update one review by review id
+app.patch('/api/reviews/', (req, res) => {
+  let r = req.body;
+  q = `update reviews SET rating=${r.rating} WHERE review_id=${r.review_id}`
+  pool.query(q, (err, results) => {
+    if(err) {
+      res.status(400).send();
+      console.log('err of update')
+    } else {
+      res.status(200).send(results.rows[0])
+      console.log('saved')
+    }
+  })
+})
 
-// parse application/json
-app.use(bodyParser.json());
+// add one new review
+app.post('/api/reviews/', (req, res) => {
+  let q;
+  const{review_id, review_date, restaurant_id, user_id, description, rating} = req.body
+  q = "INSERT INTO reviews(review_id, review_date, restaurant_id, user_id, description, rating) values ($1, $2, $3, $4, $5, $6)"
+  pool.query(q, [review_id, review_date, restaurant_id, user_id, description, rating], (err, results) => {
+    if(err) {
+      res.status(400).send(err);
+      console.log('err of post')
+    } else {
+      res.status(200).send()
+      console.log('post worked')
+    }
+  })
+})
 
 app.listen(port, () => {
-  console.log(`Listening to reviews server on port ${port}`);
-
-});
-
-
-app.get('/api/reviews/:id', (req, res) => {
-  db.getReviews(req.query.text, req.params.id, (err, data) => {
-    if (err) {
-      console.log(err);
-      res.status(401).send();
-    } else {
-      res.status(200).send(data);
-    }
-
-  });
-
-
-});
+  console.log(`Example app listening at http://localhost:${port}`)
+})
