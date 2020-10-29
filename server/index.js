@@ -7,6 +7,9 @@ const pool = require('../database/postgres/index.js')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+app.use(express.static(__dirname + '/../Front-End/client/dist'));
+app.use( '/loaderio-6e99f4363eaec11c530f7ba79cbc21ff.txt', express.static( path.join(__dirname, './loaderio-6e99f4363eaec11c530f7ba79cbc21ff.txt') ) )
+
 // get all reviews of one restaurant
 app.get('/api/restaurants/:restaurantId/reviews', (req, res) => {
   const {restaurantId} = req.params;

@@ -5,7 +5,7 @@ const config = {
   port: 5432,
   user: 'app_user',
   password: 'app_password',
-  database: "reviews_database",
+  database: "reviews",
 };
 
 const pool = new Pool(config);
